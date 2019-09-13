@@ -17,14 +17,8 @@
 
 </head>
 <body>
-    <header>
-        @yield('header')
-    </header>
-    <main>
-            @yield('content')
+    <main class="w-screen h-screen">
+        @yield('content')
     </main>
-    <footer>
-        @yield('footer')
-    </footer>
 </body>
 </html>
