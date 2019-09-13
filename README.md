@@ -3,8 +3,10 @@ My Laravel Project initial setup. This repository contains my preferred setup of
 
 ## Included Dependancies
 * Laravel UI with Vue and Auth Scaffolding
+* Font magician postcss plugin
 * Tailwindcss
 * Autoprefixer postcss plugin
+* Purgecss postcss plugin
 * Laravel mix postcss config plugin
 
 ## Setup
