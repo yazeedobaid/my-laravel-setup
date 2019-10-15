@@ -21,7 +21,7 @@
         @yield('header')
     </header>
     <main>
-            @yield('content')
+        @yield('content')
     </main>
     <footer>
         @yield('footer')
