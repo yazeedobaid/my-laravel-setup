@@ -8,6 +8,7 @@ My Laravel Project initial setup. This repository contains my preferred setup of
 * Autoprefixer postcss plugin
 * Purgecss postcss plugin
 * Laravel mix postcss config plugin
+* Jest
 
 ## Setup
 First, clone this repository or download it. Then
