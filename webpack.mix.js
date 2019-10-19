@@ -16,4 +16,16 @@ require('laravel-mix-postcss-config');
 
 mix.js('resources/js/app.js', 'public/js')
     .postCss('resources/css/tailwind.css', 'public/css')
-    .postCssConfig();
+    .postCssConfig()
+    .webpackConfig({
+        module: {
+            rules: [
+                {
+                    enforce: 'pre',
+                    test: /\.(js|vue)$/,
+                    loader: 'eslint-loader',
+                    exclude: /node_modules/
+                }
+            ]
+        }
+    });

@@ -8,7 +8,9 @@
     "hot": "cross-env NODE_ENV=development node_modules/webpack-dev-server/bin/webpack-dev-server.js --inline --hot --config=node_modules/laravel-mix/setup/webpack.config.js",
     "prod": "npm run production",
     "production": "cross-env NODE_ENV=production node_modules/webpack/bin/webpack.js --no-progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js",
-    "test": "jest"
+    "test": "jest",
+    "lint": "eslint resources/js/ --ext .js,.vue",
+    "lint:fix": "npm run lint -- --fix"
   },
   "devDependencies": {
     "@fullhuman/postcss-purgecss": "^1.2.0",
@@ -16,6 +18,14 @@
     "axios": "^0.19",
     "babel-jest": "^24.9.0",
     "cross-env": "^5.1",
+    "eslint": "^6.5.1",
+    "eslint-config-standard": "^14.1.0",
+    "eslint-loader": "^3.0.2",
+    "eslint-plugin-import": "^2.18.2",
+    "eslint-plugin-node": "^10.0.0",
+    "eslint-plugin-promise": "^4.2.1",
+    "eslint-plugin-standard": "^4.0.1",
+    "eslint-plugin-vue": "^5.2.3",
     "jest": "^24.9.0",
     "laravel-mix": "^4.0.7",
     "laravel-mix-postcss-config": "^1.0.2",
