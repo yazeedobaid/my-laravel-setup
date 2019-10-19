@@ -9,6 +9,7 @@ My Laravel Project initial setup. This repository contains my preferred setup of
 * Purgecss postcss plugin
 * Laravel mix postcss config plugin
 * Jest
+* Eslint
 
 ## Setup
 First, clone this repository or download it. Then
@@ -43,4 +44,15 @@ $ npm run hot
 Build assets for production:
 ```
 $ npm run prod
+```
+
+### Linting
+Linting Javascript and Vue components:
+```
+$ npm run lint
+```
+
+Fixing linting problems:
+```
+$ npm run lint:fix
 ```
