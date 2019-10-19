@@ -1,6 +1,6 @@
-describe("App.test.js", () => {
-
-    it('Pass test!', () => {
-        expect('Pass!').toEqual('Pass!');
+describe('app.test.js', () => {
+    it('pass test!', () => {
+        expect.hasAssertions();
+        expect('Pass!').toStrictEqual('Pass!');
     });
 });

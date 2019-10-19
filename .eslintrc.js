@@ -3,11 +3,13 @@ module.exports = {
     noInlineConfig: true,
     env: {
         browser: true,
-        es6: true
+        es6: true,
+        'jest/globals': true
     },
     extends: [
         'standard',
-        'plugin:vue/recommended'
+        'plugin:vue/recommended',
+        'plugin:jest/all'
     ],
     globals: {
         Atomics: 'readonly',
@@ -18,11 +20,12 @@ module.exports = {
         sourceType: 'module'
     },
     plugins: [
-        'vue'
+        'vue',
+        'jest'
     ],
     rules: {
         'indent': ['error', 4],
-        'no-console': 'error',
+        'no-console': ['error', {"allow": ["warn", "error"]}],
         'semi': ['error', 'always', {
             'omitLastInOneLineBlock': true
         }],
