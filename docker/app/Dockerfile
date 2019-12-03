@@ -51,5 +51,11 @@ COPY php-fpm.conf /etc/php/7.3/fpm/php-fpm.conf
 # copying supervisor configuration file to container
 COPY supervisord.conf /etc/supervisor/conf.d/supervisord.conf
 
+# copying the run script for the container.
+COPY start-container /usr/bin/start-container
+
+# make script executable
+RUN chmod +x /usr/bin/start-container
+
 # lunching supervisor to run nginx, php-fpm and Laravel queue worker if any
-CMD ["/usr/bin/supervisord"]
+CMD ["start-container"]

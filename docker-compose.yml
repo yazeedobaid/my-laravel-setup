@@ -3,11 +3,13 @@ services:
   app:
     build:
       context: docker/app
-      dockerfile: app/Dockerfile
+      dockerfile: Dockerfile
     image:
       laravelapp/app:latest
     networks:
       - appnet
+    env_file:
+      - .env
     volumes:
       - .:/var/www/html
     ports:
@@ -17,7 +19,7 @@ services:
   node:
     build:
       context: docker/node
-      dockerfile: node/Dockerfile
+      dockerfile: Dockerfile
     image:
       laravelapp/node:latest
     networks:
@@ -31,7 +33,7 @@ services:
     image: mysql:5.7
     command: --default-authentication-plugin=mysql_native_password
     environment:
-      MYSQL_RANDOM_ROOT_PASSWORD: "yes"
+      MYSQL_ROOT_PASSWORD: "${DB_ROOT_PASSWORD}"
       MYSQL_DATABASE: "${DB_DATABASE}"
       MYSQL_USER: "${DB_USERNAME}"
       MYSQL_PASSWORD: "${DB_PASSWORD}"
