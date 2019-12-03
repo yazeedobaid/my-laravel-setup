@@ -1,0 +1,59 @@
+version: '3'
+services:
+  app:
+    build:
+      context: docker/app
+      dockerfile: app/Dockerfile
+    image:
+      laravelapp/app:latest
+    networks:
+      - appnet
+    volumes:
+      - .:/var/www/html
+    ports:
+      - 80:80
+      - 443:443
+    working_dir: /var/www/html/
+  node:
+    build:
+      context: docker/node
+      dockerfile: node/Dockerfile
+    image:
+      laravelapp/node:latest
+    networks:
+      - appnet
+    environment:
+      - NODE_ENV=development
+    volumes:
+      - .:/opt/
+    working_dir: /opt/
+  mysql:
+    image: mysql:5.7
+    command: --default-authentication-plugin=mysql_native_password
+    environment:
+      MYSQL_RANDOM_ROOT_PASSWORD: "yes"
+      MYSQL_DATABASE: "${DB_DATABASE}"
+      MYSQL_USER: "${DB_USERNAME}"
+      MYSQL_PASSWORD: "${DB_PASSWORD}"
+    ports:
+      - ${DB_PORT}:3306
+    networks:
+      - appnet
+    volumes:
+      - app-data:/var/lib/mysql
+  redis:
+    image: redis:5.0.7-alpine
+    ports:
+      - ${REDIS_PORT}:${REDIS_PORT}
+    networks:
+      - appnet
+    volumes:
+      - redis-data:/data
+networks:
+  appnet:
+    driver: bridge
+volumes:
+  app-data:
+    driver: local
+  redis-data:
+    driver: local
