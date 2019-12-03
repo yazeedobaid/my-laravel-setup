@@ -1,0 +1,16 @@
+FROM node:13.2.0-alpine3.10
+
+LABEL author="Yazeed Obaid"
+LABEL version=0.1.0
+LABEL description="Docker image for Javascript and assests of a PHP Laravel application"
+
+# working directory is the project root
+WORKDIR /opt
+
+# copying the run script for the container.
+COPY start-container.sh /usr/bin/start-container
+
+# make script executable
+RUN chmod +x /usr/bin/start-container
+
+CMD ["start-container"]
