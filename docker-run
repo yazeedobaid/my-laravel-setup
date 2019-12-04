@@ -19,6 +19,7 @@ elif [ $1 = "mysql" ]; then
 elif [ $1 = "npm" ]; then
     shift 1
     docker-compose exec node npm "$@"
+
 else
     docker-compose exec app "$@"
 fi
