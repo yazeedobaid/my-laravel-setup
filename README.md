@@ -70,7 +70,7 @@ for the application; an **app** and **node** images. The app image is the main i
 contains Nginx, PHP-FPM and Supervisor. The node image is used for front-end development. The two images are scoped
 under repository name **laravelapp**.
 
-#### Docker compose
+### Docker compose
 A ```docker-compose.yml``` file has been added to build and run containers from one command.
 ```
 $ docker-compose up
@@ -79,7 +79,7 @@ $ docker-compose up
 The ```docker-compose.yml``` file take environment variables from the ```.env``` file and use it in setting 
 services of the application.
 
-##### Development with compose:
+#### Development with compose:
 To running commands against docker-compose containers the ```docker-run``` script can be used. The script
 translate the arguments given to it and execute them in the correct container. The following table shows usage examples:
 
@@ -95,12 +95,12 @@ translate the arguments given to it and execute them in the correct container. T
 > All services of docker compose redirect their logs to the STDOUT and STDERR, so when running ```docker-compose up```
 >the logs will be redirected t terminal.
 
-##### Data persistence:
+#### Data persistence:
 The database data and redis cache are mounted to Docker volumes. The volumes are created in the compose file.
 
-##### Caveats
-* An .env file must be created as usual in the root directory of the project. Docker compose use that file in
-building services containers.
-* For MYSQL, to use the root user remove the **MYSQL_USER** and **MYSQL_PASSWORD** from mysql service in
+### Caveats
+* A .env file must be created as usual in the root directory of the project. Docker compose use that file in
+building the services containers.
+* For MYSQL, to use the root user remove the **MYSQL_USER** and **MYSQL_PASSWORD** environment variables from mysql service in
 docker-compose file.
-* Changing credentials in docker-compose for .env file will not take effect in database is already created (check MYSQL docs in hub.docker) 
+* Changing MYSQL credentials in docker-compose for .env file will not take effect in an already created database (check MYSQL docs in hub.docker) 
