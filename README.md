@@ -73,7 +73,7 @@ under repository name **laravelapp**.
 #### Docker compose
 A ```docker-compose.yml``` file has been added to build and run containers from one command.
 ```
-$ docker-compose up -d
+$ docker-compose up
 ```
 
 The ```docker-compose.yml``` file take environment variables from the ```.env``` file and use it in setting 
@@ -83,13 +83,14 @@ services of the application.
 To running commands against docker-compose containers the ```docker-run``` script can be used. The script
 translate the arguments given to it and execute them in the correct container. The following table shows usage examples:
 
-| Command                     | Container   | Example                         |
-|-----------------------------|-------------|---------------------------------|
+| Command                     | Container   | Example                           |
+|-----------------------------|-------------|-----------------------------------|
 | ./docker-run composer ...   | app         | `./docker-run composer dump -o`   |
 | ./docker-run artisan ...    | app         | `./docker-run artisan migrate`    |
 | ./docker-run redis ...      | redis       | `./docker-run redis set foo bar`  |
 | ./docker-run mysql ...      | mysql       | `./docker-run mysql -u root -p`   |
 | ./docker-run npm ...        | node        | `./docker-run npm run watch`      |
+| ./docker-run ...            | app         | `./docker-run ls`                 |
 
-
-> The database data and redis cache are mounted to Docker volumes. The volumes are created in the compose file.
+##### Data persistence:
+The database data and redis cache are mounted to Docker volumes. The volumes are created in the compose file.
