@@ -92,5 +92,15 @@ translate the arguments given to it and execute them in the correct container. T
 | ./docker-run npm ...        | node        | `./docker-run npm run watch`      |
 | ./docker-run ...            | app         | `./docker-run ls`                 |
 
+> All services of docker compose redirect their logs to the STDOUT and STDERR, so when running ```docker-compose up```
+>the logs will be redirected t terminal.
+
 ##### Data persistence:
 The database data and redis cache are mounted to Docker volumes. The volumes are created in the compose file.
+
+##### Caveats
+* An .env file must be created as usual in the root directory of the project. Docker compose use that file in
+building services containers.
+* For MYSQL, to use the root user remove the **MYSQL_USER** and **MYSQL_PASSWORD** from mysql service in
+docker-compose file.
+* Changing credentials in docker-compose for .env file will not take effect in database is already created (check MYSQL docs in hub.docker) 
