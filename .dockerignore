@@ -14,6 +14,9 @@ node_modules
 .git
 **/.gitignore
 
+# misulenuous
+docker
+docker-compose*
 .idea
 .dockerignore
 .env
