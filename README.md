@@ -92,8 +92,11 @@ translate the arguments given to it and execute them in the correct container. T
 | ./docker-run npm ...        | node        | `./docker-run npm run watch`      |
 | ./docker-run ...            | app         | `./docker-run ls`                 |
 
-> All services of docker compose redirect their logs to the STDOUT and STDERR, so when running ```docker-compose up```
->the logs will be redirected t terminal.
+<br />
+<br />
+
+>All services of docker compose redirect their logs to the STDOUT and STDERR, so when running ```docker-compose up```
+>the logs will be redirected to terminal.
 
 #### Data persistence:
 The database data and redis cache are mounted to Docker volumes. The volumes are created in the compose file.
