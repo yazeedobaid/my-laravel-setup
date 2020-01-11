@@ -15,4 +15,4 @@ COPY start-container /usr/bin/start-container
 # make script executable
 RUN chmod +x /usr/bin/start-container
 
-CMD ["start-container"]
+ENTRYPOINT ["start-container"]
