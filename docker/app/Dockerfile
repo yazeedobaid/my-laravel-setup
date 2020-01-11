@@ -4,6 +4,8 @@ LABEL author="Yazeed Obaid"
 LABEL version=0.1.0
 LABEL description="Docker image for a PHP Laravel application"
 
+ARG PHP_VERSION=7.4
+
 ENV DEBIAN_FRONTEND=noninteractive
 
 RUN set -x && apt-get update && apt-get install -y gnupg
@@ -14,13 +16,13 @@ RUN echo "deb http://ppa.launchpad.net/ondrej/php/ubuntu bionic main" > /etc/apt
     && apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys C300EE8C \
     && apt-get update \
     && apt-get install -y curl zip unzip git supervisor sqlite3 \
-    && apt-get install -y nginx php7.3-fpm php7.3-cli \
-    php7.3-pgsql php7.3-sqlite3 php7.3-gd \
-    php7.3-curl php7.3-memcached \
-    php7.3-imap php7.3-mysql php7.3-mbstring \
-    php7.3-xml php7.3-zip php7.3-bcmath php7.3-soap \
-    php7.3-intl php7.3-readline php7.3-xdebug \
-    php7.3-msgpack php7.3-igbinary php7.3-ldap \
+    && apt-get install -y nginx php${PHP_VERSION}-fpm php${PHP_VERSION}-cli \
+    php${PHP_VERSION}-pgsql php${PHP_VERSION}-sqlite3 php${PHP_VERSION}-gd \
+    php${PHP_VERSION}-curl php${PHP_VERSION}-memcached \
+    php${PHP_VERSION}-imap php${PHP_VERSION}-mysql php${PHP_VERSION}-mbstring \
+    php${PHP_VERSION}-xml php${PHP_VERSION}-zip php${PHP_VERSION}-bcmath php${PHP_VERSION}-soap \
+    php${PHP_VERSION}-intl php${PHP_VERSION}-readline php${PHP_VERSION}-xdebug \
+    php${PHP_VERSION}-msgpack php${PHP_VERSION}-igbinary php${PHP_VERSION}-ldap \
     php-redis \
     # installing composer
     && php -r "readfile('http://getcomposer.org/installer');" | php -- --install-dir=/usr/bin/ --filename=composer \
@@ -43,19 +45,19 @@ EXPOSE 80
 WORKDIR /var/www/html
 
 # copying nginx's site configuration for the application
-COPY default /etc/nginx/sites-available/default
+COPY  default /etc/nginx/sites-available/default
 
 # copying modified php-fpm file to php-fpm in container, mainly for simlinking php-fpm logs
-COPY php-fpm.conf /etc/php/7.3/fpm/php-fpm.conf
+COPY  php-fpm.conf /etc/php/${PHP_VERSION}/fpm/php-fpm.conf
 
 # copying supervisor configuration file to container
-COPY supervisord.conf /etc/supervisor/conf.d/supervisord.conf
+COPY  supervisord.conf /etc/supervisor/conf.d/supervisord.conf
 
 # copying the run script for the container.
-COPY start-container /usr/bin/start-container
+COPY  start-container /usr/bin/start-container
 
 # make script executable
 RUN chmod +x /usr/bin/start-container
 
 # lunching supervisor to run nginx, php-fpm and Laravel queue worker if any
-CMD ["start-container"]
+ENTRYPOINT ["start-container"]
