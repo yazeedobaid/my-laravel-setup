@@ -1,15 +1,15 @@
-version: '3.7'
+version: "3.7"
 
 services:
   app:
     build:
       context: docker/app
       dockerfile: Dockerfile
-    image:
-      laravelapp/app:latest
+    image: laravelapp/app:latest
+    command: ["--env=dev"]
     healthcheck:
       test: ["CMD", "curl", "-f", "${APP_URL}"]
-      interval: 1m30s
+      interval: 30s
       timeout: 2s
       retries: 3
       start_period: 30s
@@ -30,8 +30,8 @@ services:
     build:
       context: docker/node
       dockerfile: Dockerfile
-    image:
-      laravelapp/node:latest
+    image: laravelapp/node:latest
+    command: ["--env=dev"]
     networks:
       - appnet
     environment:
@@ -55,7 +55,8 @@ services:
     volumes:
       - app-data:/var/lib/mysql
   redis:
-    image: redis:5.0.7-alpine
+    image: redis:5.0.7
+    command: redis-server --appendonly yes
     env_file:
       - .env
     ports:
@@ -64,9 +65,11 @@ services:
       - appnet
     volumes:
       - redis-data:/data
+
 networks:
   appnet:
     driver: bridge
+
 volumes:
   app-data:
     driver: local

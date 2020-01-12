@@ -53,11 +53,11 @@ COPY  php-fpm.conf /etc/php/${PHP_VERSION}/fpm/php-fpm.conf
 # copying supervisor configuration file to container
 COPY  supervisord.conf /etc/supervisor/conf.d/supervisord.conf
 
-# copying the run script for the container.
-COPY  start-container /usr/bin/start-container
+# copying the entrypoint script for the container.
+COPY  docker-entrypoint /usr/bin/docker-entrypoint
 
 # make script executable
-RUN chmod +x /usr/bin/start-container
+RUN chmod +x /usr/bin/docker-entrypoint
 
 # lunching supervisor to run nginx, php-fpm and Laravel queue worker if any
-ENTRYPOINT ["start-container"]
+ENTRYPOINT ["docker-entrypoint"]

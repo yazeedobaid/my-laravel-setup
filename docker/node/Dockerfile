@@ -9,10 +9,10 @@ RUN set -x
 # working directory is the project root
 WORKDIR /opt
 
-# copying the run script for the container.
-COPY start-container /usr/bin/start-container
+# copying the entrypoint script for the container.
+COPY docker-entrypoint /usr/bin/docker-entrypoint
 
 # make script executable
-RUN chmod +x /usr/bin/start-container
+RUN chmod +x /usr/bin/docker-entrypoint
 
-ENTRYPOINT ["start-container"]
+ENTRYPOINT ["docker-entrypoint"]
