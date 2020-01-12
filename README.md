@@ -97,6 +97,12 @@ translate the arguments given to it and execute them in the correct container. T
 >All services of docker compose redirect their logs to the STDOUT and STDERR, so when running ```docker-compose up```
 >the logs will be redirected to terminal.
 
+### Docker Swarm
+A compose file is included in the ```docker``` directory to be deploy application to a swarm cluster. The compose file define a stack for the application. The stack has a **web**, **mysql** and **redis** services. The web service is expected to contain the application code ready for production use. To deploy to swarm. First initialize a swarm and join nodes to it then execute the following command on a manager node;
+```
+$ docker stack deploy -c docker/docker-stack.yml
+```
+
 #### Data persistence:
 The database data and redis cache are mounted to Docker volumes. The volumes are created in the compose file.
 
