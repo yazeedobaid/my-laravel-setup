@@ -23,6 +23,7 @@ version: "3.7"
 services:
   web:
     image: laravelapp/app:latest
+    command: ["--env=prod"]
     env_file:
       - .env
     ports:
