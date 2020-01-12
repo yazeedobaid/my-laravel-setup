@@ -62,11 +62,10 @@ The ```docker``` directory at the root of the project contains all Docker files 
 to start using Docker with the application. The Docker setup depends on these official Docker images.
 * ubuntu:18.04
 * mysql:5.7
-* redis:5.0.7-alpine
+* redis:5.0.7
 * node:13.2.0-alpine3.10
 
-The ```docker``` directory contains the ```build``` script. This script is used to build two images
-for the application; an **app** and **node** images. The app image is the main image of the application which
+The compose file build two images; The **app** image and **node** image. The app image is the main image for the application which
 contains Nginx, PHP-FPM and Supervisor. The node image is used for front-end development. The two images are scoped
 under repository name **laravelapp**.
 
@@ -76,8 +75,8 @@ A ```docker-compose.yml``` file has been added to build and run containers from 
 $ docker-compose up
 ```
 
-The ```docker-compose.yml``` file take environment variables from the ```.env``` file and use it in setting 
-services of the application.
+The ```docker-compose.yml``` file take environment variables from the ```.env``` file and use it in building and running 
+the services of the application.
 
 #### Development with compose:
 To running commands against docker-compose containers the ```docker-run``` script can be used. The script
