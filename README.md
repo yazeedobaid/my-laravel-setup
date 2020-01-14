@@ -98,17 +98,18 @@ translate the arguments given to it and execute them in the correct container. T
 >the logs will be redirected to terminal.
 
 ### Docker Swarm
-A compose file is included in the ```docker``` directory to be deploy application to a swarm cluster. The compose file define a stack for the application. The stack has a **web**, **mysql** and **redis** services. The web service is expected to contain the application code ready for production use. To deploy to swarm. First initialize a swarm and join nodes to it then execute the following command on a manager node;
+A compose file is included in the ```docker``` directory to be deploy application to a swarm cluster. The compose file define a stack for the application. The stack has a **web**, **mysql** and **redis** services. The web service is expected to contain the application code ready for production use. To deploy to swarm. First initialize a swarm and join other nodes to the cluster. Then edit the stack compose file ```docker-stack.yml``` in ```docker``` directory and substitute the environment variables with your own ones. Then execute the following command on a manager node;
 ```
 $ docker stack deploy -c docker/docker-stack.yml
 ```
 
-#### Data persistence:
-The database data and redis cache are mounted to Docker volumes. The volumes are created in the compose file.
+### Data persistence:
+The database data and redis cache data are mounted to Docker named volumes in the two (development and production environments) compose files.
 
 ### Caveats
 * A .env file must be created as usual in the root directory of the project. Docker compose use that file in
 building the services containers.
 * For MYSQL, to use the root user remove the **MYSQL_USER** and **MYSQL_PASSWORD** environment variables from mysql service in
 docker-compose file.
-* Changing MYSQL credentials in docker-compose for .env file will not take effect in an already created database (check MYSQL docs in hub.docker) 
+* Changing MYSQL credentials in docker-compose for .env file will not take effect in an already created database (check MYSQL docs in hub.docker)
+* When deploying to production using Docker stack, edit the docker/docker-stack.yml file and replace the environment variables in the file with your own.
