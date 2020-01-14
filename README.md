@@ -116,3 +116,5 @@ building the services containers.
 docker-compose file.
 * Changing MYSQL credentials in docker-compose for .env file will not take effect in an already created database (check MYSQL docs in hub.docker)
 * When deploying to production using Docker stack, edit the docker/docker-stack.yml file and replace the environment variables in the file with your own.
+* Change the owner of application files to Nginx process to avoid permission issues when Laravel change files in application using Nginx process.
+```$ chown -R www-data: html/```
