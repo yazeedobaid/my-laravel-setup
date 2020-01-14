@@ -98,10 +98,13 @@ translate the arguments given to it and execute them in the correct container. T
 >the logs will be redirected to terminal.
 
 ### Docker Swarm
-A compose file is included in the ```docker``` directory to be deploy application to a swarm cluster. The compose file define a stack for the application. The stack has a **web**, **mysql** and **redis** services. The web service is expected to contain the application code ready for production use. To deploy to swarm. First initialize a swarm and join other nodes to the cluster. Then edit the stack compose file ```docker-stack.yml``` in ```docker``` directory and substitute the environment variables with your own ones. Then execute the following command on a manager node;
+A compose file is included in the ```docker``` directory to be deploy application to a swarm cluster. The compose file define a stack for the application. The stack has a **web**, **mysql** and **redis** services. The web service uses an image that will contain the application code ready for production use. This service runs in replica mode with 3 replicas. The mysql and redis services run using DNSRR (DNS Round-Robin) entry point mode with single replica on a manager node. DNS Round-Robin mode is used since these services has single task, hence no need for virtual network in front of these two services. The compose file has environment variables, like credentials. That need to be replaced with application specific ones.
+
+To deploy to swarm. First initialize a swarm and join other nodes to the cluster. Then edit the stack compose file ```docker-stack.yml``` in ```docker``` directory and substitute the environment variables with your own ones. Then execute the following command on a manager node;
 ```
 $ docker stack deploy -c docker/docker-stack.yml
 ```
+>The web service is expected to contain the application code ready for production use.
 
 ### Data persistence:
 The database data and redis cache data are mounted to Docker named volumes in the two (development and production environments) compose files.
