@@ -47,7 +47,7 @@ $ npm run prod
 ```
 
 #### Linting
-Linting Javascript and Vue components:
+The linting uses Javascript standard plugin along with ESLint Vue and Jest plugins. To linting Javascript and Vue components:
 ```
 $ npm run lint
 ```
