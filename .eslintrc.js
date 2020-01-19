@@ -21,7 +21,7 @@ module.exports = {
     },
     plugins: [
         'vue',
-        'jest'
+        'jest',
     ],
     rules: {
         'indent': ['error', 4],
@@ -29,6 +29,8 @@ module.exports = {
         'semi': ['error', 'always', {
             'omitLastInOneLineBlock': true
         }],
+
+        // Vue plugin rules
         'vue/array-bracket-spacing': 'error',
         'vue/arrow-spacing': 'error',
         'vue/brace-style': 'error',
@@ -38,7 +40,15 @@ module.exports = {
         'vue/key-spacing': 'error',
         'vue/script-indent': ['error', 4],
         'vue/html-indent': ["error", 4],
-        'vue/v-on-function-call': 'warn'
+        'vue/v-on-function-call': 'warn',
+
+        // Jest plugin rules
+        'jest/consistent-test-it': 'warn',
+        'jest/expect-expect': 'warn',
+        'jest/lowercase-name': 'warn',
+        'jest/no-commented-out-tests': 'warn',
+        'jest/no-disabled-tests': 'warn',
+
     },
     'overrides': [
         {
